@@ -1,0 +1,7 @@
+[
+  {"numb": 0, "lesaud": 1204, "type_of_les": "Lesson", "lesname": "oop"},
+  {"numb": 1, "lesaud": 1205, "type_of_les": "Examination", "lesname": "ph"},
+{"numb": 2, "lesaud": 1206, "type_of_les": "Lab", "lesname": "in"},
+{"numb": 3, "lesaud": 1207, "type_of_les": "Lesson", "lesname": "oop"}
+
+]
