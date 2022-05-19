@@ -4,25 +4,25 @@
 #include <fstream>
 #include <iostream>
 
-#include<les.h>
+#include "les.h"
 #include "absreader.h"
 
 
 class csvreader: public absreader
 {
-   //std::ifstream f;
+   std::ifstream f;
 public:
-    csvreader(const QString &filename);
-    ~csvreader();
+        csvreader(const QString &filename);
+        ~csvreader();
+        //Оператор присваивания перемещением
+        csvreader& operator= (csvreader&& orther);
+        // Конструктор перемещения
+        csvreader(csvreader&& orther);
 
-  std::vector<QString> split (QString &str, char zn);
-  std::vector<les> readall();
+        std::vector<QString> split (QString &str, char zn);
+        std::vector<les> readall();
 
-
-
-  //  std::vector<QString> split(QString &str, char zn);
-
-
+        bool is_open(){return f.is_open();}
 
 
 };

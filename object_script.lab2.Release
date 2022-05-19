@@ -1,0 +1,12 @@
+release/absreader.o
+release/csvreader.o
+release/csvwriter.o
+release/jsonreader.o
+release/les.o
+release/main.o
+release/mainwindow.o
+release/mybrowser.o
+release/online.o
+release/open.o
+release/usual.o
+release/moc_mainwindow.o

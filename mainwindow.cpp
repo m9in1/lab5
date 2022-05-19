@@ -2,32 +2,11 @@
 #include "ui_mainwindow.h"
 
 
-
-
-
-
-
-
-//char filename[] = "D:/MIET/OOP/lab5/datebase.csv";
-
-
-
-
-
-
-
-
-
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
-
 
 
 
@@ -42,22 +21,23 @@ QString MainWindow::browse(){
     filename = QFileDialog::getOpenFileName(this, tr("Open File"),
                                                          "database",
                                                          tr("Base (*.csv *.json)"));
-
-       //Открытие файла
-//       if(browsedfilename.right(1) == QString::fromStdString("v")){
-//           csvreader csv(browsedfilename);
-//           if (csv.is_open()){
-
-//               //Чтение из файла в вектор
-//               lessons = csv.readall();
-//           }
-
-//       }
-    std::cout<<filename.toUtf8().data();
+    ui->output->GreenText(filename.toUtf8().data());
+    //std::cout<<filename.toUtf8().data();
 return filename;
 }
 
 
+
+
+
+std::vector<les> MainWindow::forabs(absreader *abs){
+
+    if(abs->is_open()){
+
+        lessons = abs->readall();
+    }
+    return lessons;
+}
 
 void MainWindow::searchLes(){
     ui->output->clear();
@@ -65,22 +45,24 @@ void MainWindow::searchLes(){
     if(filename==QString()){
         MainWindow::browse();
     }
-    //std::string temp = filename.toUtf8().data();
     QString filetype = filename.mid(filename.size()-4,4);
-     //ui->output->GreenText(filetype);
+    //absreader* absr;
     if(filetype==".csv"){
-    csvreader csv_r(filename);
+        csvreader csv_r(filename);
+        forabs(&csv_r);
+}
 
-    if(csv_r.is_open()){
-
-        lessons = csv_r.readall();
-    }}
     if(filetype=="json"){
-        jsonreader j_r(filename);
-        if(j_r.is_open()){
-            lessons = j_r.readall();
-        }
+      jsonreader json_r(filename);
+      forabs(&json_r);
+
     }
+//    if(absr->is_open()){
+//        ui->output->GreenText("fkdddddddddd");
+//        //lessons = absr->readall();
+//    }
+
+
 
     if(ui->input_search->text()==""){
          ui->output->GreenText("Showing all...");
@@ -110,13 +92,9 @@ l.numb = ui->input_ID->text().toInt();
 l.lesname = ui->input_subj->text();
 l.lesaud = ui->input_aud->text().toInt();
 l.etol = static_cast<enum_type_of_les>(ui->box_type->currentIndex());
-//ui->output->append(QString::number(l.numb)+", "+l.lesname+", "+QString::number(l.lesaud)+", "+QString::number(l.etol)+";");
-
-
 
  QString filetype = filename.mid(filename.size()-4,4);
 
-//ui->output->append(l.lesname+", "+QString::number(l.lesaud)+", "+l.type_of_les+";");
 
 if(filename==QString()){
     MainWindow::browse();
@@ -134,14 +112,4 @@ ui->output->GreenText(l.lesname+" writed!");
 }
 }
 }
-
-
-//       if(fileName.right(1) == QString::fromStdString("n")){
-//           JSONReader json(fileName);
-//           if (json.is_open()){
-
-//               //Чтение из файла в вектор
-//               employes = json.readAll();
-//           }
-
 

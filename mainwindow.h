@@ -23,6 +23,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
+    std::vector<les> forabs(absreader *abs);
     void searchLes();
     void addLes();
     QString browse();

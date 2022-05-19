@@ -1,12 +1,12 @@
 #include "jsonreader.h"
 
-jsonreader::jsonreader(const QString &filename):absreader(filename)
+jsonreader::jsonreader(const QString &filename)
 {
-
+  f.open(filename.toLatin1().data());
 }
 
 jsonreader::~jsonreader(){
-
+    f.close();
 }
 
 std::vector<les> jsonreader::readall(){

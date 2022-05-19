@@ -6,27 +6,19 @@
 #include <fstream>
 #include <iostream>
 
-#include<les.h>
+#include"les.h"
+
+#include <vector>
+
+
+
 
 class absreader
 {
-protected:
- std::fstream f;
-
 public:
-
-    absreader(const QString &filename);
-    ~absreader();
-      absreader(const absreader&) = delete;
-    absreader& operator= (absreader&& other);
-    absreader(absreader&& other);
-
-    virtual std::vector<les> readall();
-    virtual bool is_open() const{return f.is_open();};
-
-
-
-
+    virtual ~absreader(){};
+    virtual std::vector<les> readall() = 0;
+    virtual bool is_open() = 0;
 };
 
 #endif // ABSREADER_H
